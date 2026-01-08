@@ -25,7 +25,7 @@ After confirmed access to database in the runtime environment of this notebook, 
 SOURCE = "test"  # @param {type:"Query"|"CollectionGroup"|"DocumentReference"|"string"}
 ```
 
-### 🦜🔗 library installation
+### 🦜🔗 Library installation
 
 The integration lives in its own `langchain-google-firestore` package, so we need to install it.
 
@@ -43,7 +43,7 @@ pip install -qU langchain-google-firestore
 # app.kernel.do_shutdown(True)
 ```
 
-### ☁ set your Google cloud project
+### ☁ Set your Google cloud project
 
 Set your Google Cloud project so that you can leverage Google Cloud resources within this notebook.
 
@@ -62,7 +62,7 @@ PROJECT_ID = "my-project-id"  # @param {type:"string"}
 !gcloud config set project {PROJECT_ID}
 ```
 
-### 🔐 authentication
+### 🔐 Authentication
 
 Authenticate to Google Cloud as the IAM user logged into this notebook in order to access your Google Cloud Project.
 

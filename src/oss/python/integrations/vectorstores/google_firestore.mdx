@@ -23,7 +23,7 @@ After confirmed access to database in the runtime environment of this notebook, 
 COLLECTION_NAME = "test"  # @param {type:"CollectionReference"|"string"}
 ```
 
-### 🦜🔗 library installation
+### 🦜🔗 Library installation
 
 The integration lives in its own `langchain-google-firestore` package, so we need to install it. For this notebook, we will also install `langchain-google-genai` to use Google Generative AI embeddings.
 
@@ -41,7 +41,7 @@ pip install -upgrade --quiet langchain-google-firestore langchain-google-vertexa
 # app.kernel.do_shutdown(True)
 ```
 
-### ☁ set your Google cloud project
+### ☁ Set your Google cloud project
 
 Set your Google Cloud project so that you can leverage Google Cloud resources within this notebook.
 
@@ -60,7 +60,7 @@ PROJECT_ID = "extensions-testing"  # @param {type:"string"}
 !gcloud config set project {PROJECT_ID}
 ```
 
-### 🔐 authentication
+### 🔐 Authentication
 
 Authenticate to Google Cloud as the IAM user logged into this notebook in order to access your Google Cloud Project.
 
