@@ -52,12 +52,11 @@ search.run("Obama's first name?")
 ```
 
 ```python
-from langchain.tools import Tool
+from langchain.tools import tool
 
 # You can create the tool to pass to an agent
-custom_tool = Tool(
-    name="web search",
-    description="Search the web for information",
-    func=search.run,
-)
+@tool
+def web_search(query: str) -> str:
+    """Search the web for information."""
+    return search.run(query)
 ```
