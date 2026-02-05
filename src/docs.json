@@ -1025,6 +1025,7 @@
                       "pages": [
                         "langsmith/log-traces-to-project",
                         "langsmith/trace-without-env-vars",
+                        "langsmith/conditional-tracing",
                         "langsmith/sample-traces"
                       ]
                     },
