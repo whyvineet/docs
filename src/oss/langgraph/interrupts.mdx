@@ -143,36 +143,32 @@ Use multiple stream modes (`"messages"` and `"updates"`) with `subgraphs=True` (
 - Detect when the graph encounters an interrupt
 - Handle user input and resume execution seamlessly
 
-```python
-async for metadata, mode, chunk in graph.astream(
-    initial_input,
-    stream_mode=["messages", "updates"],
-    subgraphs=True,
-    config=config
-):
-    if mode == "messages":
-        # Handle streaming message content
-        msg, _ = chunk
-        if isinstance(msg, AIMessageChunk) and msg.content:
-            # Display content in real-time
-            display_streaming_content(msg.content)
-    
-    elif mode == "updates":
-        # Check for interrupts
-        if "__interrupt__" in chunk:
-            # Stop streaming display
-            interrupt_info = chunk["__interrupt__"][0].value
-            
-            # Handle user input
-            user_response = get_user_input(interrupt_info)
-            
-            # Resume graph with updated input
-            initial_input = Command(resume=user_response)
-            break
-        
-        else:
-            # Track node transitions
-            current_node = list(chunk.keys())[0]
+```typescript
+const stream = graph.stream(initialInput, {
+  ...config,
+  streamMode: ["messages", "updates"],
+  subgraphs: true,
+});
+
+for await (const [metadata, mode, chunk] of stream) {
+  if (mode === "messages") {
+    const [msg] = chunk as any;
+    if (msg instanceof AIMessageChunk && msg.content) {
+      displayStreamingContent(msg.content);
+    }
+  }
+
+  else if (mode === "updates") {
+    if ("__interrupt__" in chunk) {
+      const interruptInfo = chunk["__interrupt__"][0].value;
+
+      const userResponse = await getUserInput(interruptInfo);
+
+      initialInput = new Command({ resume: userResponse });
+      break;
+    }
+  }
+}
 ```
 
 - **`stream_mode=["messages", "updates"]`**: Enables dual streaming of both message chunks and graph state updates
